@@ -6,7 +6,7 @@ export const tokenGenerate = (id: string) => {
   const payload = {
     id: id,
   };
-  const token = jsonwebtoken.sign(payload, SERCRET_KEY, { algorithm: 'HS256', expiresIn: '1m' });
+  const token = jsonwebtoken.sign(payload, SERCRET_KEY, { algorithm: 'HS256', expiresIn: '20m' });
   return token;
 };
 
