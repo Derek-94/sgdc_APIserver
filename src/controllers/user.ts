@@ -21,13 +21,10 @@ export const signUp = (req: Request, res: Response) => {
       let encryptPwd = key.toString('base64');
       let insertQuery = `insert into users(id, name, password, gender, salt) 
                        values('${newUserId}', '${newUserName}', '${encryptPwd}', '${newUserGender}', '${salt}')`;
-
       client.query(insertQuery, (err, result) => {
         if (!err) {
-          // JWT 생성?
           res.send(true);
         } else {
-          // 회원 가입 거부. 중복된 id.
           res.send(false);
         }
       });
@@ -46,7 +43,7 @@ export const login = (req: Request, res: Response) => {
       crypto.pbkdf2(loginUserPwd, stdSalt, 10000, 64, 'sha512', (err, key) => {
         let correctLogin = key.toString('base64') === rightPwd;
         if (correctLogin) {
-          console.log('next start...');
+          console.log('Existing user tried Login.');
           const token = tokenGenerate(loginUserId);
           return res.status(200).send({ token: token });
         } else {
@@ -54,7 +51,8 @@ export const login = (req: Request, res: Response) => {
         }
       });
     } else {
-      console.log(err);
+      console.log('non-existing user tried login.');
+      return res.status(400).send();
     }
   });
 };
