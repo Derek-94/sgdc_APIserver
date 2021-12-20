@@ -1,5 +1,4 @@
-import { Router, Request, Response, NextFunction } from 'express';
-import client from '../db/connection';
+import { Router } from 'express';
 
 import { authProcess } from '../services';
 import { home, login, signUp } from '../controllers/user';
@@ -17,7 +16,7 @@ router.post('/signup', signUp);
 router.get('/users', authProcess, getAllUser);
 
 // 특정 회원 조회
-router.get('/users/:id', getUserById);
+router.get('/users/:id', authProcess, getUserById);
 
 // 로그인
 router.post('/login', login);

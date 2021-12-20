@@ -16,10 +16,10 @@ export const tokenVerify = async (token: string) => {
     decode = await jsonwebtoken.verify(token, SERCRET_KEY);
   } catch (err: any) {
     if (err.message === 'jwt expired') {
-      console.log('expired token');
+      console.log('Expired token');
       return -3;
     } else {
-      console.log('invalid token');
+      console.log('Invalid token');
       return -2;
     }
   }
