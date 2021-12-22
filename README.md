@@ -27,7 +27,7 @@
  
 ### Architecture
 
-- coming soon...
+![image](https://user-images.githubusercontent.com/52649378/147026690-181e2fdd-28ae-4d22-bc1d-f57b442c3935.png)
 
 ### Frontend Server
 - [Frontend - github](https://github.com/Derek-94/sgdv_client)
